@@ -1,8 +1,26 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	max-width: 80rem;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  	color: #00B7FF;
+}
+
+.container {
+	background-color: #e6e6e6;
+	padding: 2rem;
+}
+
+.artist-image {
+	height: 100px;
+	width: 100px;
+	background-color: white;
+}
+
+.track-image {
+	height: 100px;
+	width: 100px;
+	background-color: white;
 }

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 #{title}
+    if data.length === 0 || data === undefined
+        h2 There are no results.
+    else
+        each track in data
+            if track.album.images.length > 0
+                img.track-image(src=track.album.images[0].url)
+            else
+                img.artist-image(src="/images/music-vinyl-record.png")

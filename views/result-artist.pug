@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1 #{title}
+    if data.length === 0 || data === undefined
+        h2 There are no results.
+    else
+        each artist in data
+            if artist.images.length > 0
+                img.artist-image(src=artist.images[0].url)
+            else
+                img.artist-image(src="/images/microphone.png")
+            p
