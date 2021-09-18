@@ -10,10 +10,14 @@ block content
                     img.image-big(src="/images/music-vinyl-record.png")
             div.text-center
                 h1 #{album.name}
+                a(href=album.external_urls.spotify)
+                    div.spotify-pill 
+                        img.spotify-icon.mr-1(src="/images/spotify.png")
+                        span.ml-1 Check Album on Spotify
                 div.mb-1
                     span.mr-1 Popularity: #{album.popularity}
                     span.ml-1 Release Date: #{album.release_date}
-                div.track-artists
+                div.album-artists
                     if album.artists.length === 1
                         span Artist: 
                     else

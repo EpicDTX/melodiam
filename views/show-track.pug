@@ -10,6 +10,10 @@ block content
                     img.image-big(src="/images/music-vinyl-record.png")
             div.text-center
                 h1 #{track.name}
+                a(href=track.external_urls.spotify)
+                    div.spotify-pill 
+                        img.spotify-icon.mr-1(src="/images/spotify.png")
+                        span.ml-1 Check Track on Spotify
                 div.mb-1
                     span.mr-1 Popularity: #{track.popularity}
                     span.ml-l Duration: #{Math.floor(track.duration_ms / 60000)} mins #{Math.round((track.duration_ms % 60000)/ 1000)} secs

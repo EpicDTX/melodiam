@@ -176,7 +176,6 @@ router.get('/albums/:album_id', async function(req, res, next) {
 			artists.push(artist);
 		}
 		
-		// res.json({ album, artists })
 		res.render('show-album', { album, artists });
 	}
 	catch(err){

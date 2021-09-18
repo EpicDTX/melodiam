@@ -10,12 +10,16 @@ block content
                     img.image-big(src="/images/microphone.png")
             div.text-center
                 h1 #{artist.name}
+                a(href=artist.external_urls.spotify)
+                    div.spotify-pill 
+                        img.spotify-icon.mr-1(src="/images/spotify.png")
+                        span.ml-1 Check Artist on Spotify
                 div.mb-1
                     span.mr-1 Popularity: #{artist.popularity}
                     span.ml-1 Followers: #{artist.followers.total}
                 div.card-genre
                     each genre in artist.genres
-                        div.genre
+                        div.pill.bg-blue
                             span #{genre}
         div.extra-info-card
             h3 Top Tracks
