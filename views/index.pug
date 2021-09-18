@@ -4,11 +4,11 @@ block content
 	div.index-background
 	div.index-card
 		h1 Welcome to #{title}
-		h3 Search for artists:
+		h2 Search for artists:
 		form(action= '/search/artists' method = 'get')
 			input.form-control(type='text' placeholder = 'Artist...' name = 'artist' required)
 			button.button(type = 'submit') Search
-		h3 Search for tracks:
+		h2 Search for tracks:
 		form(action= '/search/tracks' method = 'get')
 			input.form-control(type='text' placeholder = 'Track...' name = 'track' required)
 			button.button(type = 'submit') Search
