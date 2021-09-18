@@ -1,14 +1,16 @@
 extends layout
 
 block content
-	h1 #{title}
-	p Welcome to #{title}
-	form(action= '/search/artists' method = 'get')
-		input(type='text' placeholder = 'Artist...' name = 'artist' required)
-		button(type = 'submit') Submit
-	br
-	form(action= '/search/tracks' method = 'get')
-		input(type='text' placeholder = 'Track...' name = 'track' required)
-		button(type = 'submit') Submit
+	div.index-background
+	div.index-card
+		h1 Welcome to #{title}
+		h3 Search for artists:
+		form(action= '/search/artists' method = 'get')
+			input.form-control(type='text' placeholder = 'Artist...' name = 'artist' required)
+			button.button(type = 'submit') Search
+		h3 Search for tracks:
+		form(action= '/search/tracks' method = 'get')
+			input.form-control(type='text' placeholder = 'Track...' name = 'track' required)
+			button.button(type = 'submit') Search
 
 

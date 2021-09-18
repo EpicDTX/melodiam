@@ -1,8 +1,16 @@
 doctype html
 html
     head
-        title= title
+        title Melodiam
         link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='javascript', href='/javascripts/app.js')
     body
-        div.container
-            block content
+        //- Nav Bar
+        nav.nav-bar
+            div.nav-bar-content
+                a.title-a(href="/")
+                    h1.white Melodiam
+                a.text-white(href="/")
+                    span.nav-link Home
+        //- Content
+        block content
