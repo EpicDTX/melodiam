@@ -1,0 +1,53 @@
+extends layout
+
+block content
+    div.container
+        div.details-card
+            div
+                if artist.images.length > 0
+                    img.image-big(src=artist.images[0].url)
+                else
+                    img.image-big(src="/images/microphone.png")
+            div.text-center
+                h1 #{artist.name}
+                div.mb-1
+                    span.mr-1 Popularity: #{artist.popularity}
+                    span.ml-1 Followers: #{artist.followers.total}
+                div.card-genre
+                    each genre in artist.genres
+                        div.genre
+                            span #{genre}
+        div.extra-info-card
+            h3 Top Tracks
+            div.flex.justify-center
+                each track in top_tracks
+                    div.flex.items-center.mr-1.mb-1
+                        a.card-small(href="/tracks/"+track.id)
+                            if track.album.images.length > 0
+                                img.image-small(src=track.album.images[0].url) 
+                            else
+                                img.image-small(src="/images/music-vinyl-record.png")
+                            span #{track.name}
+        div.extra-info-card
+            h3 Albums
+            div.flex.justify-center
+                each album in albums
+                    div.flex.items-center.mr-1.mb-1
+                        a.card-small(href="/albums/"+album.id)
+                            if album.images.length > 0
+                                img.image-small(src=album.images[0].url) 
+                            else
+                                img.image-small(src="/images/music-vinyl-record.png")
+                            span #{album.name}
+        div.extra-info-card
+            h3 Related Artists
+            div.flex.justify-center
+                each artist in related_artists
+                    div.flex.items-center.mr-1.mb-1
+                        a.card-small(href="/artists/"+artist.id)
+                            if artist.images.length > 0
+                                img.image-small(src=artist.images[0].url)
+                            else
+                                img.image-small(src="/images/microphone.png")
+                            span #{artist.name}
+                               

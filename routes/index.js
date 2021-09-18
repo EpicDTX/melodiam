@@ -41,23 +41,44 @@ router.get('/search/artists', function(req, res, next) {
 				res.render('error', { error: err });
 			});
 	}
-	catch{
+	catch(err){
 		res.render('error', { error: err });
 	}
 });
 
 /* GET an artist. */
-router.get('/artists/:artist_id', function(req, res, next) {
-	// Get Artist from id
+router.get('/artists/:artist_id', async function(req, res, next) {
 	artist_id = req.params.artist_id;
 	try{
-		spotifyApi.getArtist(artist_id)
-			.then(function(data) {
-				res.json(data.body);
-				// res.render('show-artist', { data: data.body.artists.items });
-			}, function(err) {
-				res.render('error', { error: err });
-			});
+		// Get an artist from id
+		const artist = await spotifyApi.getArtist(artist_id).then(function(data) {
+			return data.body;
+		}, function(err) {
+			res.render('error', { error: err });
+		});
+		
+		// Get an artist's albums
+		const albums = await spotifyApi.getArtistAlbums(artist_id).then(function (data) {
+			return data.body.items;
+		}, function(err) {
+			res.render('error', { error: err });
+		});
+
+		// Get an artist's top tracks
+		const top_tracks = await spotifyApi.getArtistTopTracks(artist_id, 'AU').then(function(data) {
+			return data.body.tracks;
+		}, function(err) {
+			res.render('error', { error: err });
+		});
+		
+		// Get artists related to an artist
+		const related_artists = await spotifyApi.getArtistRelatedArtists(artist_id).then(function(data) {
+			return data.body.artists;
+		}, function(err) {
+			res.render('error', { error: err });
+		});
+
+		res.render('show-artist', { artist, albums, top_tracks, related_artists });
 	}
 	catch(err){
 		res.render('error', { error: err });
@@ -77,7 +98,72 @@ router.get('/search/tracks', function(req, res, next) {
 				res.render('error', { error: err });
 			});
 	}
-	catch{
+	catch(err){
+		res.render('error', { error: err });
+	}
+});
+
+/* GET a track. */
+router.get('/tracks/:track_id', async function(req, res, next) {
+	track_id = req.params.track_id;
+	try{
+		// Get an track from id
+		const track = await spotifyApi.getTrack(track_id).then(function(data) {
+			return data.body;
+		}, function(err) {
+			res.render('error', { error: err });
+		});
+
+		// Get an artists of track
+		var artists = [];
+		for(track_artist of track.artists) {
+			artist = await spotifyApi.getArtist(track_artist.id).then(function(data) {
+				return data.body;
+			}, function(err) {
+				res.render('error', { error: err });
+			});
+			artists.push(artist);
+		}
+
+		/* Get Audio Features for a Track */
+		const features = await spotifyApi.getAudioFeaturesForTrack(track_id)
+			.then(function(data) {
+				return data.body;
+			}, function(err) {
+				res.render('error', { error: err });
+			});
+		
+		res.render('show-track', { track, artists, features });
+	}
+	catch(err){
+		res.render('error', { error: err });
+	}
+});
+
+/* GET an album. */
+router.get('/albums/:album_id', async function(req, res, next) {
+	album_id = req.params.album_id;
+	try{
+		// Get an track from id
+		const album = await spotifyApi.getAlbum(album_id).then(function(data) {
+			return data.body;
+		})
+
+		// Get an artists of album
+		var artists = [];
+		for(album_artist of album.artists) {
+			artist = await spotifyApi.getArtist(album_artist.id).then(function(data) {
+				return data.body;
+			}, function(err) {
+				res.render('error', { error: err });
+			});
+			artists.push(artist);
+		}
+		
+		// res.json({ album, artists })
+		res.render('show-album', { album, artists });
+	}
+	catch(err){
 		res.render('error', { error: err });
 	}
 });

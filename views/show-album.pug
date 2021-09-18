@@ -1,0 +1,40 @@
+extends layout
+
+block content
+    div.container
+        div.details-card
+            div
+                if album.images.length > 0
+                    img.image-big(src=album.images[0].url)
+                else
+                    img.image-big(src="/images/music-vinyl-record.png")
+            div.text-center
+                h1 #{album.name}
+                div.mb-1
+                    span.mr-1 Popularity: #{album.popularity}
+                    span.ml-1 Release Date: #{album.release_date}
+                div.track-artists
+                    if album.artists.length === 1
+                        span Artist: 
+                    else
+                        span Artists:
+                    each artist in artists
+                        div.flex.items-center.mr-1.mb-1
+                            a.card-small(href="/artists/"+artist.id)
+                                if artist.images.length > 0
+                                    img.image-small(src=artist.images[0].url)
+                                else
+                                    img.image-small(src="/images/microphone.png")
+                                span #{artist.name}
+        div.extra-info-card
+            h3 Tracks (#{album.total_tracks})
+            div.flex.justify-center
+                each track in album.tracks.items
+                    div.flex.items-center.mr-1.mb-1
+                        a.card-small(href="/tracks/"+track.id)
+                            if album.images.length > 0
+                                img.image-small(src=album.images[0].url)
+                            else
+                                img.image-small(src="/images/music-vinyl-record.png")
+                            span.mr-1 #{track.name}
+                            span.ml-1 Duration: #{Math.floor(track.duration_ms / 60000)} mins #{Math.round((track.duration_ms % 60000)/ 1000)} secs

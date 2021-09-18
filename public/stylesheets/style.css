@@ -50,7 +50,7 @@ a:hover {
 }
 
 .index-card {
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
 	padding-top: 1rem;
 	padding-bottom: 4rem;
@@ -80,9 +80,9 @@ form {
 	padding-bottom: 0.25rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 	border: black 1px solid;
-	font-size: 16px;
+	font-size: 18px;
 	width: 70%;
 }
 
@@ -91,22 +91,16 @@ form {
 	padding-bottom: 0.25rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 	border: rgba(16, 185, 129, 1) 1px solid;
 	margin-left: 1rem;
 	background-color: rgba(16, 185, 129, 1);
 	color: white;
+	font-size: 18px;
 }
 
 .button:hover {
-	padding-top: 0.25rem;
-	padding-bottom: 0.25rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	border-radius: 0.5rem;
-	margin-left: 1rem;
 	background-color: rgba(6, 95, 70, 1);
-	color: white;
 }
 
 .title-a {
@@ -135,10 +129,36 @@ form {
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 4rem;
+	min-height: 100%;
 }
 
 .text-white {
 	color: white;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.w-100 {
+	width: 100%;
 }
 
 .result-content {
@@ -149,10 +169,36 @@ form {
 }
 
 .card {
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
 	padding: 1rem;
 	margin-bottom: 2rem;
+	margin-right: auto;
+	margin-left: auto;
+	border: black 1px solid;
+	background-color: white;
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.card-small {
+	border-radius: 1rem;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+	padding: 0.5rem;
+	margin-right: auto;
+	margin-left: auto;
+	border: black 1px solid;
+	background-color: white;
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.card-small-no-hover {
+	border-radius: 1rem;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+	padding: 0.5rem;
 	margin-right: auto;
 	margin-left: auto;
 	border: black 1px solid;
@@ -166,15 +212,17 @@ form {
 	background-color: rgba(110, 231, 183, 1);
 }
 
+.card-small:hover {
+	background-color: rgba(110, 231, 183, 1);
+}
+
 .card-heading {
-	margin-left: 2rem;
 	margin-bottom: 0.5rem;
 	font-size: 24px;
 	font-weight: 500;
 }
 
 .card-subheading {
-	margin-left: 2rem;
 	margin-bottom: 0.5rem;
 	font-size: 16px;
 	display: flex;
@@ -188,12 +236,11 @@ form {
 .card-image {
 	height: 100px;
 	width: 100px;
-	background-color: white;
-	border-radius: 0.5rem;
+	border-radius: 1rem;
+	margin-right: 2rem;
 }
 
 .card-genre {
-	margin-left: 2rem;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -207,11 +254,10 @@ form {
 	padding-left: 1rem;
 	background-color: rgba(67, 56, 202, 1);
 	color: white;
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 }
 
 .track-artists {
-	margin-left: 2rem;
 	margin-bottom: 0.5rem;
 	font-size: 16px;
 	display: flex;
@@ -232,21 +278,78 @@ form {
 	padding-bottom: 0.25rem;
 	padding-right: 0.5rem;
 	padding-left: 0.5rem;
-	background-color: rgba(236, 72, 153, 1);
+	background-color: rgba(219, 39, 119, 1);
 	color: white;
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 }
 
-.artist-image {
-	height: 100px;
-	width: 100px;
+.details-card {
+	border-radius: 1rem;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+	padding: 1rem;
+	margin-bottom: 2rem;
+	margin-right: auto;
+	margin-left: auto;
+	border: black 1px solid;
 	background-color: white;
-	border-radius: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	align-items: center;
+	justify-content: center;
 }
 
-.track-image {
-	height: 100px;
-	width: 100px;
+.details-card h1 {
+	text-align: center;
+}
+
+.details-card span {
+	font-size: 18px;
+}
+
+.image-big {
+	height: 200px;
+	width: 200px;
+	border-radius: 1rem;
+}
+
+.extra-info-card {
+	border-radius: 1rem;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+	padding: 1rem;
+	margin-bottom: 2rem;
+	margin-right: auto;
+	margin-left: auto;
+	border: black 1px solid;
 	background-color: white;
-	border-radius: 0.5rem;
+	width: 80%;
+	font-size:18px;
+}
+
+.extra-info-card h3 {
+	margin-top: 0;
+}
+
+
+.image-small {
+	height: 50px;
+	width: 50px;
+	border-radius: 1rem;
+	margin-right: 1rem;
+}
+
+.mt-1 {
+	margin-top: 1rem;
+}
+
+.mb-1 {
+	margin-bottom: 1rem;
+}
+
+.ml-1 {
+	margin-left: 1rem;
+}
+
+.mr-1 {
+	margin-right: 1rem;
 }
