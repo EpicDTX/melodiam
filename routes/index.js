@@ -26,17 +26,17 @@ spotifyApi.clientCredentialsGrant().then(
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  	res.render('index', { title: 'Music4U' });
+  	res.render('index', { title: 'Melodiam' });
 });
 
-/* GET home page. */
+/* GET result page for artists. */
 router.get('/search/artists', function(req, res, next) {
 	// Search artists whose name contains query
 	const query = req.query
 	try{
 		spotifyApi.searchArtists(query['artist'])
 			.then(function(data) {
-				res.render('result-artist', { title:'Search Results For Artist: "'+query['artist']+'"', data: data.body.artists.items });
+				res.render('result-artist', { title:'Search Results For Artists: "'+query['artist']+'"', data: data.body.artists.items });
 			}, function(err) {
 				res.render('error', { error: err });
 			});
@@ -46,14 +46,33 @@ router.get('/search/artists', function(req, res, next) {
 	}
 });
 
-/* GET home page. */
+/* GET an artist. */
+router.get('/artists/:artist_id', function(req, res, next) {
+	// Get Artist from id
+	artist_id = req.params.artist_id;
+	try{
+		spotifyApi.getArtist(artist_id)
+			.then(function(data) {
+				res.json(data.body);
+				// res.render('show-artist', { data: data.body.artists.items });
+			}, function(err) {
+				res.render('error', { error: err });
+			});
+	}
+	catch(err){
+		res.render('error', { error: err });
+	}
+});
+
+/* GET result page for tracks. */
 router.get('/search/tracks', function(req, res, next) {
 	// Search artists whose name contains query
 	const query = req.query
 	try{
 		spotifyApi.searchTracks("track:"+query['track'])
 			.then(function(data) {
-				res.render('result-track', { title:'Search Results For Track: "'+query['track']+'"', data: data.body.tracks.items });
+				// res.json(data.body);
+				res.render('result-track', { title:'Search Results For Tracks: "'+query['track']+'"', data: data.body.tracks.items });
 			}, function(err) {
 				res.render('error', { error: err });
 			});

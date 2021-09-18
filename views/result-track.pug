@@ -1,12 +1,30 @@
 extends layout
 
 block content
-    h1 #{title}
-    if data.length === 0 || data === undefined
-        h2 There are no results.
-    else
-        each track in data
-            if track.album.images.length > 0
-                img.track-image(src=track.album.images[0].url)
-            else
-                img.artist-image(src="/images/music-vinyl-record.png")
+    div.container
+        h1 #{title}
+        if data.length === 0 || data === undefined
+            h2 There are no results.
+        else
+            div.result-content
+                each track in data
+                    a.card(href="/tracks/"+track.id)
+                        div
+                            if track.album.images.length > 0
+                                img.card-image(src=track.album.images[0].url)
+                            else
+                                img.card-image(src="/images/music-vinyl-record.png")
+                        div
+                            div.card-heading #{track.name}
+                            div.card-subheading
+                                span Popularity: #{track.popularity}
+                                span Album: #{track.album.name}
+                                span Duration: #{Math.floor(track.duration_ms / 60000)} mins #{Math.round((track.duration_ms % 60000)/ 1000)} secs
+                            div.track-artists
+                                if track.album.artists.length === 1
+                                    span Artist: 
+                                else
+                                    span Artists:
+                                each artist in track.album.artists
+                                    span.track-artist #{artist.name}
+

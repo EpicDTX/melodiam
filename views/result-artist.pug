@@ -1,13 +1,27 @@
 extends layout
 
 block content
-    h1 #{title}
-    if data.length === 0 || data === undefined
-        h2 There are no results.
-    else
-        each artist in data
-            if artist.images.length > 0
-                img.artist-image(src=artist.images[0].url)
-            else
-                img.artist-image(src="/images/microphone.png")
-            p
+    div.container
+        h1 #{title}
+        if data.length === 0 || data === undefined
+            h2 There are no results.
+        else
+            div.result-content
+                each artist in data
+                    a.card(href="/artists/"+artist.id)
+                        div
+                            if artist.images.length > 0
+                                img.card-image(src=artist.images[0].url)
+                            else
+                                img.card-image(src="/images/microphone.png")
+                        div
+                            div.card-heading #{artist.name}
+                            div.card-subheading
+                                span Popularity: #{artist.popularity}
+                                span Followers: #{artist.followers.total}
+                            div.card-genre
+                                each genre in artist.genres
+                                    div.genre
+                                        span #{genre}
+
+                    
