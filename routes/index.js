@@ -36,7 +36,7 @@ router.get('/search/artists', function(req, res, next) {
 	try{
 		spotifyApi.searchArtists(query['artist'])
 			.then(function(data) {
-				res.render('result-artist', { title:'Search Results For Artists: "'+query['artist']+'"', data: data.body.artists.items });
+				res.render('result-artist', { title:'Search Results For Artist: "'+query['artist']+'"', data: data.body.artists.items });
 			}, function(err) {
 				res.render('error', { error: err });
 			});
@@ -92,8 +92,7 @@ router.get('/search/tracks', function(req, res, next) {
 	try{
 		spotifyApi.searchTracks("track:"+query['track'])
 			.then(function(data) {
-				// res.json(data.body);
-				res.render('result-track', { title:'Search Results For Tracks: "'+query['track']+'"', data: data.body.tracks.items });
+				res.render('result-track', { title:'Search Results For Track: "'+query['track']+'"', data: data.body.tracks.items });
 			}, function(err) {
 				res.render('error', { error: err });
 			});
@@ -134,6 +133,23 @@ router.get('/tracks/:track_id', async function(req, res, next) {
 			});
 		
 		res.render('show-track', { track, artists, features });
+	}
+	catch(err){
+		res.render('error', { error: err });
+	}
+});
+
+/* GET result page for tracks. */
+router.get('/search/albums', function(req, res, next) {
+	// Search artists whose name contains query
+	const query = req.query
+	try{
+		spotifyApi.searchAlbums("album:"+query['album'])
+			.then(function(data) {
+				res.render('result-album', { title:'Search Results For Album: "'+query['album']+'"', data: data.body.albums.items });
+			}, function(err) {
+				res.render('error', { error: err });
+			});
 	}
 	catch(err){
 		res.render('error', { error: err });

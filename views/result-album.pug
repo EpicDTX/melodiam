@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    div.container
+        h1 #{title}
+        if data.length === 0 || data === undefined
+            h2 There are no results.
+        else
+            div.result-content
+                each album in data
+                    a.card(href="/albums/"+album.id)
+                        div
+                            if album.images.length > 0
+                                img.card-image(src=album.images[0].url)
+                            else
+                                img.card-image(src="/images/music-vinyl-record.png")
+                        div
+                            div.card-heading #{album.name}
+                            div.card-subheading
+                                div Popularity: #{album.popularity}
+                                div Release Date: #{album.release_date}
+                                div No. Tracks: #{album.total_tracks}
+                            div.album-artists
+                                if album.artists.length === 1
+                                    span Artist: 
+                                else
+                                    span Artists:
+                                each artist in album.artists
+                                    div.pill.bg-yellow #{artist.name}
+
