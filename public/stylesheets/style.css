@@ -134,6 +134,7 @@ form {
 	max-width: 80rem;
 	margin-right: auto;
 	margin-left: auto;
+	margin-top: 4rem;
 }
 
 .text-white {
@@ -176,9 +177,11 @@ form {
 	margin-left: 2rem;
 	margin-bottom: 0.5rem;
 	font-size: 16px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
-.card-subheading span{
+.card-subheading div{
 	margin-right: 2rem;
 }
 
@@ -216,19 +219,20 @@ form {
 	align-items: center;
 }
 
-.track-artists span{
-	margin-right: 2rem;
+.track-artists div{
+	margin-right: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .track-artist {
 	margin-right: 1rem;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-right: 1rem;
-	padding-left: 1rem;
-	background-color: rgba(239, 68, 68, 1);
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
+	background-color: rgba(236, 72, 153, 1);
 	color: white;
 	border-radius: 0.5rem;
 }

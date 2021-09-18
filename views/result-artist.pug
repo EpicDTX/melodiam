@@ -17,8 +17,8 @@ block content
                         div
                             div.card-heading #{artist.name}
                             div.card-subheading
-                                span Popularity: #{artist.popularity}
-                                span Followers: #{artist.followers.total}
+                                div Popularity: #{artist.popularity}
+                                div Followers: #{artist.followers.total}
                             div.card-genre
                                 each genre in artist.genres
                                     div.genre

@@ -17,14 +17,14 @@ block content
                         div
                             div.card-heading #{track.name}
                             div.card-subheading
-                                span Popularity: #{track.popularity}
-                                span Album: #{track.album.name}
-                                span Duration: #{Math.floor(track.duration_ms / 60000)} mins #{Math.round((track.duration_ms % 60000)/ 1000)} secs
+                                div Popularity: #{track.popularity}
+                                div Album: #{track.album.name}
+                                div Duration: #{Math.floor(track.duration_ms / 60000)} mins #{Math.round((track.duration_ms % 60000)/ 1000)} secs
                             div.track-artists
                                 if track.album.artists.length === 1
                                     span Artist: 
                                 else
                                     span Artists:
                                 each artist in track.album.artists
-                                    span.track-artist #{artist.name}
+                                    div.track-artist #{artist.name}
 
