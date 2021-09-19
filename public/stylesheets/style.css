@@ -435,3 +435,7 @@ form {
 	color: rgba(110, 231, 183, 1);
 	background-color: black;
 }
+
+.overflow-x-hidden {
+	overflow-x: hidden;
+}

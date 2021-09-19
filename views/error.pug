@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    div.container
+    div.container.overflow-x-hidden
         h1 Error Caught
-        h2= error.status
+        h2 #{error.status}
         pre #{error.stack}
