@@ -12,37 +12,54 @@ router.get('/:performer/:performer_id', async function(req, res, next) {
     try{
         url = `https://api.seatgeek.com/2/performers?q=${query}&client_id=${client_id}`;
         const performer = await axios.get(url).then(function (data) {
-            return data.data.performers[0];         
+            if(data.data.performers.length > 0) {
+                var i = 0;
+                for (const performer of data.data.performers) {
+                    if(performer.name === query.replace("-", " ")){
+                        return data.data.performers[i];
+                    }
+                    i++;
+                }
+                return "None";
+            }
+            return "None";
         }, function(err) {
             res.render('error', { error: err });
         });
 
-        has_events = performer.has_upcoming_events;
+        if(performer === "None") {
+            has_events = false;
+            performer_name = query.replace("-", " ");
+            res.render('show-event', {performer, performer_name, performer_id, has_events})
+        }else{
 
-        if(has_events) {
-            url = `https://api.seatgeek.com/2/events?q=${query}&client_id=${client_id}`;
-            const response = await axios.get(url).then(function (data) {
-                // res.json(data.data.events)
-                return data.data.events;
-            }, function(err) {
-                res.render('error', { error: err });
-            });
+            has_events = performer.has_upcoming_events;
 
-            var events = [];
-            for (const event of response) {
-                for (const event_performer of event.performers) {
-                    if(event_performer.name === performer.name){
-                        events.push(event);
+            if(has_events) {
+                url = `https://api.seatgeek.com/2/events?q=${query}&client_id=${client_id}`;
+                const response = await axios.get(url).then(function (data) {
+                    // res.json(data.data.events)
+                    return data.data.events;
+                }, function(err) {
+                    res.render('error', { error: err });
+                });
+
+                var events = [];
+                for (const event of response) {
+                    for (const event_performer of event.performers) {
+                        if(event_performer.name === performer.name){
+                            events.push(event);
+                        }
                     }
                 }
+
+                const num_events = events.length;
+
+                res.render('show-event', {performer, performer_id, has_events, num_events, events})
+            }else{
+                res.render('show-event', {performer, performer_id, has_events})
             }
-
-            const num_events = events.length;
-
-            res.render('show-event', {performer, performer_id, has_events, num_events, events})
         }
-        
-        res.render('show-event', {performer, performer_id, has_events})
     }
     catch(err){
         res.render('error', { error: err });

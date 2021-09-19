@@ -3,17 +3,24 @@ extends layout
 block content
     div.container
         div.details-card
-            div
-                img.image-big(src=performer.image)
-            div.text-center
-                h1 #{performer.name}
+            if performer === "None"
+                h1 #{performer_name}
                 a(href="/search/artists/"+performer_id)
                     div.artist-pill 
                         span.ml-1 View Artist
-                div.card-genre
-                    each genre in performer.genres
-                        div.pill.bg-blue
-                            span #{genre.name}
+            else
+                div
+                    img.image-big(src=performer.image)
+                div.text-center
+                    h1 #{performer.name}
+                    a(href="/search/artists/"+performer_id)
+                        div.artist-pill 
+                            span.ml-1 View Artist
+                    div.card-genre
+                        if performer.genres.length > 0
+                            each genre in performer.genres
+                                div.pill.bg-blue
+                                    span #{genre.name}
         div.extra-info-card
             if has_events === false
                 h3 Events (0)
