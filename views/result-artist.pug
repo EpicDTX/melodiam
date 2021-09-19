@@ -8,7 +8,7 @@ block content
         else
             div.result-content
                 each artist in data
-                    a.card(href="/artists/"+artist.id)
+                    a.card(href="/search/artists/"+artist.id)
                         div
                             if artist.images.length > 0
                                 img.card-image(src=artist.images[0].url)

@@ -10,7 +10,7 @@ block content
                     img.image-big(src="/images/music-vinyl-record.png")
             div.text-center
                 h1 #{track.name}
-                a(href=track.external_urls.spotify)
+                a(href=track.external_urls.spotify target="_blank")
                     div.spotify-pill 
                         img.spotify-icon.mr-1(src="/images/spotify.png")
                         span.ml-1 Check Track on Spotify
@@ -20,7 +20,7 @@ block content
                 div.track-artists
                     span Album:
                     div.flex.items-center.mr-1.mb-1
-                        a.card-small(href="/albums/"+track.album.id)
+                        a.card-small(href="/search/albums/"+track.album.id)
                             if track.album.images.length > 0
                                 img.image-small(src=track.album.images[0].url)
                             else
@@ -33,7 +33,7 @@ block content
                         span Artists:
                     each artist in artists
                         div.flex.items-center.mr-1.mb-1
-                            a.card-small(href="/artists/"+artist.id)
+                            a.card-small(href="/search/artists/"+artist.id)
                                 if artist.images.length > 0
                                     img.image-small(src=artist.images[0].url)
                                 else

@@ -10,7 +10,7 @@ block content
                     img.image-big(src="/images/microphone.png")
             div.text-center
                 h1 #{artist.name}
-                a(href=artist.external_urls.spotify)
+                a(href=artist.external_urls.spotify target="_blank")
                     div.spotify-pill 
                         img.spotify-icon.mr-1(src="/images/spotify.png")
                         span.ml-1 Check Artist on Spotify
@@ -26,7 +26,7 @@ block content
             div.flex.justify-center
                 each track in top_tracks
                     div.flex.items-center.mr-1.mb-1
-                        a.card-small(href="/tracks/"+track.id)
+                        a.card-small(href="/search/tracks/"+track.id)
                             if track.album.images.length > 0
                                 img.image-small(src=track.album.images[0].url) 
                             else
@@ -37,7 +37,7 @@ block content
             div.flex.justify-center
                 each album in albums
                     div.flex.items-center.mr-1.mb-1
-                        a.card-small(href="/albums/"+album.id)
+                        a.card-small(href="/search/albums/"+album.id)
                             if album.images.length > 0
                                 img.image-small(src=album.images[0].url) 
                             else
@@ -48,7 +48,7 @@ block content
             div.flex.justify-center
                 each artist in related_artists
                     div.flex.items-center.mr-1.mb-1
-                        a.card-small(href="/artists/"+artist.id)
+                        a.card-small(href="/search/artists/"+artist.id)
                             if artist.images.length > 0
                                 img.image-small(src=artist.images[0].url)
                             else

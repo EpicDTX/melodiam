@@ -8,7 +8,7 @@ block content
         else
             div.result-content
                 each track in data
-                    a.card(href="/tracks/"+track.id)
+                    a.card(href="/search/tracks/"+track.id)
                         div
                             if track.album.images.length > 0
                                 img.card-image(src=track.album.images[0].url)
