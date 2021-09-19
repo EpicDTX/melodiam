@@ -5,24 +5,24 @@ var SpotifyWebApi = require('spotify-web-api-node');
 
 // credentials are optional
 var spotifyApi = new SpotifyWebApi({
-	clientId: '0f1244057a924345ad1efeea30b6b2e6',
-	clientSecret: 'b4af642c48da4ac4b1e671e09c588cd5',
-	redirectUri: 'http://localhost/callback'
+    clientId: '0f1244057a924345ad1efeea30b6b2e6',
+    clientSecret: 'b4af642c48da4ac4b1e671e09c588cd5',
+    redirectUri: 'http://localhost/callback'
 });
 
 // Retrieve an access token.
 spotifyApi.clientCredentialsGrant().then(
-	function(data) {
-	  console.log('The access token expires in ' + data.body['expires_in']);
-	  console.log('The access token is ' + data.body['access_token']);
-  
-	  // Save the access token so that it's used in future calls
-	  spotifyApi.setAccessToken(data.body['access_token']);
-	},
-	function(err) {
-	  console.log('Something went wrong when retrieving an access token', err);
-	}
-  );
+    function(data) {
+		console.log('The access token expires in ' + data.body['expires_in']);
+		console.log('The access token is ' + data.body['access_token']);
+		
+		// Save the access token so that it's used in future calls
+		spotifyApi.setAccessToken(data.body['access_token']);
+    },
+    function(err) {
+      	console.log('Something went wrong when retrieving an access token', err);
+    }
+);
 
 /* GET result page for artists. */
 router.get('/artists', function(req, res, next) {

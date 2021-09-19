@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    div.container
+        div.details-card
+            div
+                img.image-big(src=performer.image)
+            div.text-center
+                h1 #{performer.name}
+                a(href="/search/artists/"+performer_id)
+                    div.artist-pill 
+                        span.ml-1 View Artist
+                div.mb-1
+                    span.mr-1 Popularity:
+                    span.ml-1 Followers:
+                div.card-genre
+                    each genre in performer.genres
+                        div.pill.bg-blue
+                            span #{genre.name}
+        div.extra-info-card
+            h3 Events (#{num_events})
+            div
+                each event in events
+                    div.mr-1.mb-1
+                        div.card-small-no-hover
+                            div.flex.flex-col
+                                div.flex
+                                    h3.mb-0.mr-1 Concert at #{event.venue.name}
+                                    a(href=event.url target="_blank")
+                                        span.event-pill Check out on SeatGeek
+                                div.flex.flex-col
+                                    div Date: #{event.datetime_utc.split("T")[0]}
+                                    div Time: #{event.datetime_utc.split("T")[1]}
+                                    div Location: #{event.venue.address} (#{event.venue.extended_address})

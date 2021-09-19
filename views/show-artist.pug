@@ -14,6 +14,9 @@ block content
                     div.spotify-pill 
                         img.spotify-icon.mr-1(src="/images/spotify.png")
                         span.ml-1 Check Artist on Spotify
+                a(href="/events/"+artist.name.replace(" ", "-")+"/"+artist.id)
+                    div.event-pill 
+                        span.ml-1 Check Events
                 div.mb-1
                     span.mr-1 Popularity: #{artist.popularity}
                     span.ml-1 Followers: #{artist.followers.total}
